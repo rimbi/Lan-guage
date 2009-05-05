@@ -9,6 +9,8 @@ extern const char *yytext;
 extern YYSTYPE yylval;
 extern YYSTYPE yylineno;
 
+int if_statement_valid = 0;
+
 void yyerror(const char *str)
 {
         fprintf(stderr,"error: %s-%s-%d\n",str, yytext, yylineno);
@@ -21,22 +23,39 @@ int yywrap()
   
 main()
 {
-	yydebug=0;
+	yydebug=1;
         yyparse();
 } 
 %}
 
 /* Bison declarations. */ 
-%token NUM SEMICOLON
-%left PLUS
+%token IFT THENT ELSET BEGINT ENDT NUMT SEMICOLONT SYMBOLT
+%left PLUST
 
 %% /* The grammar follows. */ 
 
-input: 
-	| input exp
+program: block { printf("program bitti\n"); return 0; }
 	;
 
-exp: NUM 
-	| exp PLUS exp { $$=$1 + $3; printf("= %d\n", $$); }
+block: BEGINT statement_list ENDT 
+	;
+
+statement_list: 
+	| statement_list statement
+	| statement_list block
+	;
+
+statement: exp {printf(";\n");}
+	| if_statement
+	| SYMBOLT '=' exp {printf(";\n");}
+	;
+
+if_statement: IFT exp THENT block 
+	| IFT exp THENT block ELSET block 
+	;
+
+exp: NUMT 
+	| exp PLUST exp { $$=$1 + $3; }
 	;
 %% 
+
