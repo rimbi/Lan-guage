@@ -1,0 +1,4 @@
+How to build
+------------
+You need flex and bison packages installed. Then the remaining is just to make.
+
