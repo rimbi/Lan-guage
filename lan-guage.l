@@ -1,6 +1,6 @@
 %{
 #include <stdio.h>
-#include "simple_calculator.tab.h"
+#include "lan-guage.tab.h"
 %}
 
 char			[a-zA-Z]
