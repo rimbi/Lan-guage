@@ -1,5 +1,5 @@
 default:
-	bison -vtd simple_calculator.y
-	flex simple_calculator.l
-	gcc -g -o simple_calculator lex.yy.c simple_calculator.tab.c -lm 
-	./simple_calculator
+	bison -vtd lan-guage.y
+	flex lan-guage.l
+	gcc -g -o compiler lex.yy.c lan-guage.tab.c -lm 
+	./compiler
