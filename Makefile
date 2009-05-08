@@ -3,3 +3,5 @@ default:
 	flex lan-guage.l
 	gcc -g -o compiler lex.yy.c lan-guage.tab.c -lm 
 	./compiler
+clean:
+	@rm -f *.c *.h *.output compiler
