@@ -23,7 +23,7 @@ int yywrap()
   
 main()
 {
-	yydebug=1;
+	yydebug=0;
         yyparse();
 } 
 %}
