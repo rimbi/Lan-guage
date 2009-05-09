@@ -16,7 +16,8 @@ begin			printf("{\n"); return BEGINT;
 end			printf("}\n"); return ENDT;
 {number}                yylval=atoi(yytext); printf("%d", yylval); return NUMT;
 {symbol}                printf("%s", yytext); return SYMBOLT;
-[ \t\n]			;
+[ \t]			;
+\n			return '\n';
 "+"			printf(" + "); return PLUST;
 .			printf("%c", yytext[0]); return yytext[0];
 %%
